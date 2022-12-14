@@ -30,7 +30,7 @@ spec:
   type: LoadBalancer
   ports:
   - name: http
-    ports: 80
+    port: 80
     protocol: TCP
     targetPort: 8080
   selector:
