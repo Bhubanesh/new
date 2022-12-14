@@ -6,7 +6,7 @@ resources:
 
 variables:
    imageRepo: pythontest
-   tag: '$(Buid.BuildId)'
+   tag: '$(Build.BuildId)'
 
 
 stages:
