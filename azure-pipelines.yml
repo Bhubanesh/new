@@ -37,25 +37,25 @@ stages:
         artifact: 'drop'
         publishlocation: 'pipeline'
 
-# - stage: Deploy
-#   displayName: Deploy to AKS
-#   dependsOn: Build
-#   jobs: 
-#   - job: Deploy
-#     displayName: deploy 
-#     pool: 
-#       vmImage: ubuntu-latest
+- stage: Deploy
+  displayName: Deploy to AKS
+  dependsOn: Build
+  jobs: 
+  - job: Deploy
+    displayName: deploy 
+    pool: 
+      vmImage: ubuntu-latest
 
-#     steps:
-#     - task: DownloadPipelineArtifact@2
-#       inputs:
-#         buildType: 'current'
-#         artifact: 'drop'
-#         targetPath: '$(Pipeline.Workspace)/drop'
+    steps:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'current'
+        artifact: 'drop'
+        targetPath: '$(Pipeline.Workspace)/drop'
 
-#     - task: KubernetesManifest@0  
-#       inputs:
-#         action: 'deploy'
-#         kubernetesServiceConnection: 'k8connection'
-#         namespace: 'default'
-#         manifests: $(Pipeline.Workspace)/drop/deployment.yml    
+    - task: KubernetesManifest@0  
+      inputs:
+        action: 'deploy'
+        kubernetesServiceConnection: 'k8connection'
+        namespace: 'default'
+        manifests: $(Pipeline.Workspace)/drop/deployment.yml    
