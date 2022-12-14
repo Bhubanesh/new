@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: simpleapp-1
+    labels:
+      app: simpleapp 
+spec:
+  replicas: 3
+  selector:
+     matchLables:
+         app: simpleapp 
+  template:
+     metadata:
+         labels:
+           app: simpleapp
+     spec:
+         containers:
+         - name: simpleapp
+           image: testacr0306.azurecr.io/pythontest:latest
+           ports:
+              containerPort: 8080
+---
+apiVersion: v1 
+kind: Service
+metadata:
+    name: k8-service
+    labels:
+       app: simpleapp
+spec:
+  tpye: LoadBalancer
+  ports:
+    name: http
+    ports: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+     app: simpleapp          
+
+                    
+                  
