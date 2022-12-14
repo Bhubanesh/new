@@ -27,7 +27,7 @@ metadata:
     labels:
        app: simpleapp
 spec:
-  tpye: LoadBalancer
+  type: LoadBalancer
   ports:
     name: http
     ports: 80
